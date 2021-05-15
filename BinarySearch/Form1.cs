@@ -33,6 +33,9 @@ namespace BinarySearch
             arraytextBox.ReadOnly = true;
         }
 
+        //Derclaring variables
+        int[] generatedArray;
+
        
 
 
@@ -43,7 +46,8 @@ namespace BinarySearch
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            int[] generatedArray = generate(10, 10 ,0 );
+            generatedArray = generate(50, 100 ,0 );
+            Array.Sort(generatedArray);
             String generatedArrayString = "";
             foreach (int temp in generatedArray) {
 
@@ -79,6 +83,27 @@ namespace BinarySearch
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Searcher searcher = new Searcher(generatedArray, int.Parse(arrayInput.Text));
+            String Data;
+            String found = searcher.returnBoolean().ToString();
+            String index = searcher.returnIndex().ToString();
+            String runtime = searcher.returnRuntime().ToString();
+            if (!searcher.returnBoolean())
+            {
+                Data = "Was the Integer found?: " + found;
+            }
+            else {
+
+
+                Data = "Was the Integer found?: " + found + "\nIndex of target found: " + index + "\nRuntime of the search in milliseconds: " + runtime;
+            
+            
+            }
+            output.Text = Data;
+        
+            
+
+
 
         }
     }
