@@ -35,6 +35,7 @@ namespace BinarySearch
             this.generateButton = new System.Windows.Forms.Button();
             this.search = new System.Windows.Forms.Button();
             this.output = new System.Windows.Forms.TextBox();
+            this.consoleOutput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // arrayInput
@@ -92,11 +93,22 @@ namespace BinarySearch
             this.output.TabIndex = 5;
             this.output.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
+            // consoleOutput
+            // 
+            this.consoleOutput.Location = new System.Drawing.Point(22, 348);
+            this.consoleOutput.Multiline = true;
+            this.consoleOutput.Name = "consoleOutput";
+            this.consoleOutput.ReadOnly = true;
+            this.consoleOutput.Size = new System.Drawing.Size(321, 90);
+            this.consoleOutput.TabIndex = 6;
+            this.consoleOutput.TextChanged += new System.EventHandler(this.textBox1_TextChanged_2);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.consoleOutput);
             this.Controls.Add(this.output);
             this.Controls.Add(this.search);
             this.Controls.Add(this.generateButton);
@@ -119,6 +131,7 @@ namespace BinarySearch
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.Button search;
         private System.Windows.Forms.TextBox output;
+        private System.Windows.Forms.TextBox consoleOutput;
     }
 }
 

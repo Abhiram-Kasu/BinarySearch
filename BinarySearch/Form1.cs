@@ -99,11 +99,17 @@ namespace BinarySearch
             
             
             }
+            consoleOutput.Text = searcher.returnDebugStatements();
             output.Text = Data;
         
             
 
 
+
+        }
+
+        public void textBox1_TextChanged_2(object sender, EventArgs e)
+        {
 
         }
     }
