@@ -46,7 +46,7 @@ namespace BinarySearch
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            generatedArray = generate(50, 100 ,0 );
+            generatedArray = generate(500, 1000 ,0 );
             Array.Sort(generatedArray);
             String generatedArrayString = "";
             foreach (int temp in generatedArray) {
@@ -87,7 +87,7 @@ namespace BinarySearch
             String Data;
             String found = searcher.returnBoolean().ToString();
             String index = searcher.returnIndex().ToString();
-            String runtime = searcher.returnRuntime().ToString();
+            String runtime = searcher.returnRuntime();
             if (!searcher.returnBoolean())
             {
                 Data = "Was the Integer found?: " + found;
@@ -95,7 +95,7 @@ namespace BinarySearch
             else {
 
 
-                Data = "Was the Integer found?: " + found + "\nIndex of target found: " + index + "\nRuntime of the search in milliseconds: " + runtime;
+                Data = "Was the Integer found?: " + found + "\r\nIndex of target found: " + index + "\r\nRuntime of the search in nanoseconds: " + runtime;
             
             
             }

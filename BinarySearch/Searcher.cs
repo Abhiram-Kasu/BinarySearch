@@ -25,18 +25,17 @@ namespace BinarySearch
             int min = 0;
             int middle;
             Boolean notFoundLeave = false;
-            watch.Start();
-            
+            long starttime = Stopwatch.GetTimestamp();
             
             while (!isfound && !notFoundLeave) {
                 middle = (max + min) / 2;
-                debugString += "Looped and set middle to the average of the Max and Min\n";
+                debugString += "Looped and set middle to the average of the Max and Min\r\n";
                 Console.WriteLine("Looped and set middle to the average of the Max and Min");
 
                 if (array[middle] < target)
                 {
                     min = middle;
-                    debugString += "Set Middle to Min\n";
+                    debugString += "Set Middle to Min\r\n";
                     Console.WriteLine("Set Middle to Min");
                     
 
@@ -44,7 +43,7 @@ namespace BinarySearch
                 else if (array[middle] > target) {
 
                     max = middle+1;
-                    debugString += "Set Middle to Max\n";
+                    debugString += "Set Middle to Max\r\n";
                     Console.WriteLine("Set Middle to Max");
                 
                 
@@ -83,13 +82,13 @@ namespace BinarySearch
                 
                 
                 }
-                
+                long endtime = Stopwatch.GetTimestamp();
+                runtime = ((endtime - starttime) / 100);
+
             
             
             }
-            watch.Stop();
-            runtime = watch.ElapsedMilliseconds;
-
+            
 
 
         
@@ -107,8 +106,8 @@ namespace BinarySearch
             return isfound;
         
         }
-        public long returnRuntime() {
-            return runtime;
+        public String returnRuntime() {
+            return runtime.ToString();
         }
         public String returnDebugStatements() {
 

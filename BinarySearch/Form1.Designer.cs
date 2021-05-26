@@ -89,6 +89,7 @@ namespace BinarySearch
             this.output.Location = new System.Drawing.Point(22, 142);
             this.output.Multiline = true;
             this.output.Name = "output";
+            this.output.ReadOnly = true;
             this.output.Size = new System.Drawing.Size(321, 187);
             this.output.TabIndex = 5;
             this.output.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
@@ -99,6 +100,7 @@ namespace BinarySearch
             this.consoleOutput.Multiline = true;
             this.consoleOutput.Name = "consoleOutput";
             this.consoleOutput.ReadOnly = true;
+            this.consoleOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.consoleOutput.Size = new System.Drawing.Size(321, 90);
             this.consoleOutput.TabIndex = 6;
             this.consoleOutput.TextChanged += new System.EventHandler(this.textBox1_TextChanged_2);
