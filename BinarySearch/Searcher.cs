@@ -28,24 +28,25 @@ namespace BinarySearch
             Boolean notFoundLeave = false;
             long starttime = Stopwatch.GetTimestamp();
             
+            
             while (!isfound && !notFoundLeave) {
                 middle = (max + min) / 2;
-                BinarySearch.updater.update("Looped and set middle to the average of the Max and Min\r\n");
-                Console.WriteLine("Looped and set middle to the average of the Max and Min");
-
+                BinarySearch.updater.consoleOutput.Text +="Looped and set middle to the average of the Max and Min\r\n";
+                
+                
                 if (array[middle] < target)
                 {
                     min = middle;
-                    BinarySearch.updater.update("Set Middle to Min\r\n");
-                    Console.WriteLine("Set Middle to Min");
+                    BinarySearch.updater.consoleOutput.Text +="Set Middle to Min\r\n";
+                    
                     
 
                 }
                 else if (array[middle] > target) {
 
                     max = middle+1;
-                    BinarySearch.updater.update("Set Middle to Max\r\n");
-                    Console.WriteLine("Set Middle to Max");
+                    BinarySearch.updater.consoleOutput.Text +="Set Middle to Max\r\n";
+                    
                 
                 
                 }
@@ -54,32 +55,32 @@ namespace BinarySearch
 
                     targetIndex = max;
                     isfound = true;
-                    BinarySearch.updater.update("Found Index is the Max");
-                    Console.WriteLine("Found Index is the Max");
+                    BinarySearch.updater.consoleOutput.Text +="Found Index is the Max";
+                    
                 }
                 else if (array[min] == target)
                 {
 
                     targetIndex = min;
                     isfound = true;
-                    BinarySearch.updater.update("Found Index is Min");
-                    Console.WriteLine("Found Index is Min");
+                    BinarySearch.updater.consoleOutput.Text +="Found Index is Min";
+                    
 
                 }
                 else if (array[middle] == target) {
 
                     targetIndex = middle;
                     isfound = true;
-                    BinarySearch.updater.update("Found Index is Middle");
-                    Console.WriteLine("Found Index is Middle");
+                    BinarySearch.updater.consoleOutput.Text +="Found Index is Middle";
+                    
                         }
                 if (max-min == 1) {
 
                     isfound = false;
                     notFoundLeave = true;
-                    BinarySearch.updater.update("Middle was set to zero due to there being no middle");
+                    BinarySearch.updater.consoleOutput.Text +="Middle was set to zero due to there being no middle";
                     
-                    Console.WriteLine("Middle was set to zero due to their being no middle");
+                    
                     
                 
                 

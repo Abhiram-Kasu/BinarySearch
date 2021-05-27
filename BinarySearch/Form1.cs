@@ -71,13 +71,25 @@ namespace BinarySearch
                 MessageBox.Show("You didnt enter in the Max and Size of the aray ");
             
             }
-            Array.Sort(generatedArray);
-            
-            foreach (int temp in generatedArray) {
+            try
+            {
+                Array.Sort(generatedArray);
+            }
+            catch (System.ArgumentNullException) {
+                MessageBox.Show("You did not enter in values for the Max and Length of the array");
+            }
+            try
+            {
+                foreach (int temp in generatedArray)
+                {
 
-                generatedArrayString += temp.ToString();
-                generatedArrayString += " , ";
-            
+                    generatedArrayString += temp.ToString();
+                    generatedArrayString += " , ";
+
+                }
+            }catch (System.NullReferenceException) {
+
+                MessageBox.Show("No values in the Max and Length boxes");
             }
             //cleans out the last comma from the string to make it look nice
             generatedArrayString = generatedArrayString.Substring(0, generatedArrayString.Length - 3);
@@ -127,7 +139,8 @@ namespace BinarySearch
             
             
             }
-            consoleOutput.Text = searcher.returnDebugStatements();
+            //not used anymore
+            /*consoleOutput.Text += searcher.returnDebugStatements();*/
             output.Text = Data;
             }
             catch (System.FormatException) {
