@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,34 +11,50 @@ using System.Windows.Forms;
 
 namespace BinarySearch
 {
-    public partial class Form1 : Form
+    public partial class BinarySearch : Form
     {
         //Method declarations start here
         public int[] generate(int a, int max, int min)
         {
             int[] temp = new int[a];
             Random random = new Random();
+            int randominteger;
 
-            for (int i = 0; i < a; i++) {
+            for (int i = 0; i < a;) {
+                randominteger = random.Next(min, max);
+                if (i == 0 || randominteger != temp[i - 1])
+                {
 
-                temp[i] = random.Next(min, max);
-            
+                    temp[i] = randominteger;
+                    i++;
+                }
+                else {
+
+                   
+                }
             }
 
             return temp;
         }
 
-        public Form1()
+        public BinarySearch()
         {
             InitializeComponent();
             arraytextBox.ReadOnly = true;
+            updater = this;
+            
         }
+        public static BinarySearch updater;
 
         //Derclaring variables
         int[] generatedArray;
+        String generatedArrayString = "";
 
-       
 
+        public void update(String message)
+        {
+            consoleOutput.Text += message;
+        }
 
         private void arrayInput_TextChanged(object sender, EventArgs e)
         {
@@ -46,9 +63,16 @@ namespace BinarySearch
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            generatedArray = generate(500, 1000 ,0 );
+            try
+            {
+                generatedArray = generate(int.Parse(arraySize.Text), int.Parse(arrayMax.Text), 0);
+            }
+            catch (System.FormatException) {
+                MessageBox.Show("You didnt enter in the Max and Size of the aray ");
+            
+            }
             Array.Sort(generatedArray);
-            String generatedArrayString = "";
+            
             foreach (int temp in generatedArray) {
 
                 generatedArrayString += temp.ToString();
@@ -83,11 +107,15 @@ namespace BinarySearch
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Searcher searcher = new Searcher(generatedArray, int.Parse(arrayInput.Text));
+            try {
+                Searcher searcher = new Searcher(generatedArray, int.Parse(arrayInput.Text));
+            
             String Data;
             String found = searcher.returnBoolean().ToString();
             String index = searcher.returnIndex().ToString();
             String runtime = searcher.returnRuntime();
+
+            
             if (!searcher.returnBoolean())
             {
                 Data = "Was the Integer found?: " + found;
@@ -101,14 +129,46 @@ namespace BinarySearch
             }
             consoleOutput.Text = searcher.returnDebugStatements();
             output.Text = Data;
-        
+            }
+            catch (System.FormatException) {
+                
+                MessageBox.Show("you didnt enter an item to search");
             
+            }
+
 
 
 
         }
 
         public void textBox1_TextChanged_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void downloadArray_Click(object sender, EventArgs e)
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            desktopPath += @"\array.txt";
+            try
+            {
+                
+                File.WriteAllText(desktopPath, generatedArrayString);
+                Clipboard.SetText(desktopPath);
+                MessageBox.Show("File downloaded to: " + desktopPath + "\nThe path is copyed to your clipboard");
+            }
+            catch (System.IO.IOException) {
+                MessageBox.Show("Could not create or write to file for some reasons");
+            
+            }
+        }
+
+        private void arraySize_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelMax_Click(object sender, EventArgs e)
         {
 
         }
