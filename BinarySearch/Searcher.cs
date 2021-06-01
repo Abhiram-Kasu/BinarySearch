@@ -22,11 +22,13 @@ namespace BinarySearch
             
             Array.Sort(array);
             int length = array.Length;
+            List<int> arrayList = new List<int>(array);
             int max = length - 1;
             int min = 0;
             int middle;
-            Boolean notFoundLeave = false;
+            Boolean notFoundLeave = !arrayList.Contains(target);
             long starttime = Stopwatch.GetTimestamp();
+
             
             
             while (!isfound && !notFoundLeave) {
@@ -74,7 +76,7 @@ namespace BinarySearch
                     BinarySearch.updater.consoleOutput.Text +="Found Index is Middle";
                     
                         }
-                if (max-min == 1) {
+                if (array[min] == array[min + 1] + 1) {
 
                     isfound = false;
                     notFoundLeave = true;

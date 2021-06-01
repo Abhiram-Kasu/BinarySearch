@@ -185,5 +185,12 @@ namespace BinarySearch
         {
 
         }
+        //To Look nice
+        /*private void generateButton_Hover(object sender, EventArgs e) {
+
+            generateButton.Size.Width(60,70);
+        
+        }*/
+
     }
 }
