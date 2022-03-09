@@ -77,6 +77,7 @@ namespace BinarySearch
             }
             catch (System.ArgumentNullException) {
                 MessageBox.Show("You did not enter in values for the Max and Length of the array");
+                return;
             }
             try
             {
@@ -120,32 +121,16 @@ namespace BinarySearch
         private void button1_Click(object sender, EventArgs e)
         {
             try {
-                Searcher searcher = new Searcher(generatedArray, int.Parse(arrayInput.Text));
-            
-            String Data;
-            String found = searcher.returnBoolean().ToString();
-            String index = searcher.returnIndex().ToString();
-            String runtime = searcher.returnRuntime();
-
-            
-            if (!searcher.returnBoolean())
-            {
-                Data = "Was the Integer found?: " + found;
+                var builder = new StringBuilder();
+                var values = Searcher.Search(generatedArray, int.Parse(arrayInput.Text));
+                _ = values.Item1 ?? throw new Exception("Target not found");
+                builder.Append("Was Item found?: " + values.Item1 + "\r\n");
+                builder.Append("Time Taken: " + values.Item2);
+                output.Text += builder.ToString();
             }
-            else {
-
-
-                Data = "Was the Integer found?: " + found + "\r\nIndex of target found: " + index + "\r\nRuntime of the search in nanoseconds: " + runtime;
-            
-            
-            }
-            //not used anymore
-            /*consoleOutput.Text += searcher.returnDebugStatements();*/
-            output.Text = Data;
-            }
-            catch (System.FormatException) {
+            catch (Exception x) {
                 
-                MessageBox.Show("you didnt enter an item to search");
+                MessageBox.Show(x.Message);
             
             }
 

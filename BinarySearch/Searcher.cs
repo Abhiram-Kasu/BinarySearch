@@ -15,7 +15,7 @@ namespace BinarySearch
         long runtime;
         /*private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);*/
         String debugString;
-        public Searcher(int[] array, int target) {
+        public static (int?, long?) Search(int[] array, int target) {
             Stopwatch watch = new Stopwatch();
 
             //declaring variables
@@ -31,94 +31,36 @@ namespace BinarySearch
 
             
             
-            while (!isfound && !notFoundLeave) {
+            while (min <= max) {
                 middle = (max + min) / 2;
                 BinarySearch.updater.consoleOutput.Text +="Looped and set middle to the average of the Max and Min\r\n";
-                
-                
-                if (array[middle] < target)
+
+                if (array[middle].Equals(target))
                 {
-                    min = middle;
-                    BinarySearch.updater.consoleOutput.Text +="Set Middle to Min\r\n";
-                    
-                    
+                    long time = (Stopwatch.GetTimestamp() - starttime)/100;
+                    return (middle, time);
 
                 }
-                else if (array[middle] > target) {
-
-                    max = middle+1;
-                    BinarySearch.updater.consoleOutput.Text +="Set Middle to Max\r\n";
-                    
-                
-                
-                }
-                if (array[max] == target)
+                else if(target < array[middle])
                 {
-
-                    targetIndex = max;
-                    isfound = true;
-                    BinarySearch.updater.consoleOutput.Text +="Found Index is the Max";
-                    
-                }
-                else if (array[min] == target)
+                    max = middle - 1;
+                }else if(target > array[middle])
                 {
-
-                    targetIndex = min;
-                    isfound = true;
-                    BinarySearch.updater.consoleOutput.Text +="Found Index is Min";
-                    
-
+                    min = middle + 1;
                 }
-                else if (array[middle] == target) {
-
-                    targetIndex = middle;
-                    isfound = true;
-                    BinarySearch.updater.consoleOutput.Text +="Found Index is Middle";
-                    
-                        }
-                if (array[min] == array[min + 1] + 1) {
-
-                    isfound = false;
-                    notFoundLeave = true;
-                    BinarySearch.updater.consoleOutput.Text +="Middle was set to zero due to there being no middle";
-                    
-                    
-                    
+               
                 
-                
-                }
-                long endtime = Stopwatch.GetTimestamp();
-                runtime = ((endtime - starttime) / 100);
 
             
             
             }
-            
 
+            return (null, null);
 
         
         
         }
-        public int returnIndex() {
-
-
-            return targetIndex;
-        
-        
-        }
-        public Boolean returnBoolean() {
-
-            return isfound;
-        
-        }
-        public String returnRuntime() {
-            return runtime.ToString();
-        }
-        public String returnDebugStatements() {
-
-            return debugString;
-        
-        }
+       
 
 
 
